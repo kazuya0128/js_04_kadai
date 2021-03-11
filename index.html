@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>睡眠管理アプリ</title>
+  </head>
+  <body>
+    <header>
+      <h1>睡眠時間管理</h1>
+    </header>
+    <main>
+      <article>
+        <p>
+          睡眠はとても大切です。規則正しい生活がより良い人生を作ります。<br />
+          このアプリは睡眠時間を可視化する事であなたの意識を変えるサポートをします
+        </p>
+      </article>
+      <a href="https://www.otsuka.co.jp/suimin/column02.html"
+        >理想的な睡眠とは？？</a
+      >
+      <div class="put">
+        <label for="">日付</label>
+        <input type="date" id="day" value="2021-03-13" min="2021-03-13" />
+        <label for="">就寝時間を入力してください。</label>
+        <input type="time" id="gotobed" />
+        <label for="">起床時間を入力してください。</label>
+        <input type="time" id="wakeup" />
+        <button id="send">送信</button>
+      </div>
+      <div id="output"></div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "",
+        authDomain: "",
+        projectId: "",
+        storageBucket: "",
+        messagingSenderId: "",
+        appId: "",
+        databaseURL: "",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      let newPostRef = firebase.database().ref();
+
+      $("#send").on("click", function () {
+        newPostRef.push({
+          day: $("#day").val(),
+          gotobed: $("#gotobed").val(),
+          wakeup: $("#wakepu").val(),
+        });
+      });
+
+      // 受信処理
+      newPostRef.on("child_added", function (data) {
+        //ここに保存されたデータが全て入ってくる
+        // function (data)のdataにfirebaseのデータが入ってくる
+        let v = data.val();
+        //console.logで受信=firebaseに登録されている中身を確認しよう！
+        console.log(v, "firebaseのデータが入ってきます");
+        //テンプレートリテラル `` を活用して変数にhtmlを埋め込もう！
+        let str = `<p>${v.day}<br>${v.gotobed}<br>${v.wakeup}</p>`;
+        // ここでデータをhtmlに埋め込む prependには変数を埋め込もう！
+        $("#output").prepend(str);
+      });
+    </script>
+  </body>
+</html>

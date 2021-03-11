@@ -1,0 +1,14 @@
+h1 {
+  background-color: beige;
+}
+
+article {
+  background-color: beige;
+  color: cadetblue;
+}
+.put {
+  height: 100px;
+  width: max-content;
+  display: block;
+  padding: 15px;
+}
