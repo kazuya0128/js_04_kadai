@@ -1,14 +1,31 @@
-h1 {
-  background-color: beige;
+.atama {
+  background-color: cadetblue;
+  border-radius: 10px;
+  color: white;
+  font-size: 36px;
+  padding: 10px;
 }
 
-article {
-  background-color: beige;
-  color: cadetblue;
+#output {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: cadetblue;
+  border-bottom: 3px solid cadetblue;
+  margin-top: auto;
+  padding: 20px;
 }
-.put {
-  height: 100px;
-  width: max-content;
-  display: block;
-  padding: 15px;
+
+.form,
+span {
+  background-color: lightgrey;
+  margin: 10px;
+  color: white;
+}
+
+.footer {
+  background-color: cadetblue;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
 }
